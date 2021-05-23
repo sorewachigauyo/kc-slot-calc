@@ -21,7 +21,7 @@ where `rand` is a function that returns an integer between 0 and `air_state` inc
 | AI              | 10          |
 ```
 
-Hence, if the player gets AI and the enemy gets AS+, the `rand` function returns two values: 0 or 1. Hence, there will be four possible outcomes of `loss`, which may be non-unique. If there are two slots, we add up `loss` per slot and there will be 16 different possible outcomes. Thus, the number of possible cases is given by `(air_state + 1) ^ num_slots`.
+Hence, if the player gets AI and the enemy gets AS+, the `rand` function returns two values: 0 or 1. There will be four possible outcomes of `loss`, which may be non-unique. If there are two slots, we add up `loss` per slot and there will be 16 different possible outcomes. Thus, the number of possible cases is given by `(2 * (air_state + 1)) ^ num_slots`.
 
 
 ## Slot Estimation
@@ -29,4 +29,13 @@ Hence, if the player gets AI and the enemy gets AS+, the `rand` function returns
 To reduce the number of calculations, we limit `air_state` to 1 (so `2 ^ num_slots`) number of cases. From TsunDB, we are able to extract a large number of results for the stage 1 loss per enemy composisiton. We then brute force guesses of the enemy slot sizes and compare them to the actual result.
 
 
-The limitation of this method is that we need enough samples to cover the entire result space. This was originally suggested and implemented by Croshadow.
+The limitation of this method is that we need enough samples to cover the entire result space. 
+
+## Slot Ordering
+
+After we obtain some results of the possible slot sizes, we need to arrange the slots and do a second check to ensure the guess fits the current air power bounds.
+
+
+## Acknowledgements
+
+This was originally suggested and implemented by Croshadow.
