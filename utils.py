@@ -1,4 +1,5 @@
 import json
+from collections import Counter
 
 def add_sets(set1, set2):
     res = set()
@@ -17,7 +18,12 @@ def extract_stg1_cases(filename):
 
     return res
 
+def extract_stg1_cases_counter(filename):
+    with open(filename, encoding="utf-8") as r:
+        data = json.load(r)
+
+    return Counter([case["airbattle"]["lost"] for case in data])
 
 if __name__ == "__main__":
-    s = extract_stg1_cases("./data/1650.json")
+    s = extract_stg1_cases_counter("./data/1682.json")
     print(s)

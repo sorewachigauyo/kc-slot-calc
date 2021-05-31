@@ -28,6 +28,7 @@ def objective(guess, existing_combinations, actual, air_state=1):
     guess_loss = calculate_ship_combinations(guess, air_state)
     print(guess_loss)
     estimate = add_sets(guess_loss, existing_combinations)
+    print(estimate)
     if estimate == actual:
         return True
     else:
@@ -41,12 +42,14 @@ if __name__ == "__main__":
     num_enemies = 1
     air_state = 1
 
-    actual = set([0, 1, 2, 3, 4, 5, 6, 7, 8])
+    #actual = set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+    actual = set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     slot_sizes = [12, 12, 8, 4]
-    #fleet = [slot_sizes, slot_sizes]
-    fleet = []
+    fleet = [slot_sizes, slot_sizes]
+    #fleet = []
     print(calculate_ship_combinations(slot_sizes))
     existing_combinations = calculate_total_combinations([calculate_ship_combinations(ship) for ship in fleet])
+    print(existing_combinations)
     res = []
 
     def slotter(array, rem, idx):

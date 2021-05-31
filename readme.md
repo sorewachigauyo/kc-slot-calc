@@ -26,10 +26,20 @@ Hence, if the player gets AI and the enemy gets AS+, the `rand` function returns
 
 ## Slot Estimation
 
+### Brute Force
+
 To reduce the number of calculations, we limit `air_state` to 1 (so `2 ^ num_slots`) number of cases. From TsunDB, we are able to extract a large number of results for the stage 1 loss per enemy composisiton. We then brute force guesses of the enemy slot sizes and compare them to the actual result.
 
 
-The limitation of this method is that we need enough samples to cover the entire result space. 
+The limitation of this method is that we need enough samples to cover the entire result space.
+
+### Expectation Value
+
+Instead of hoping that every possibility is returned in the actual data, we calculate the expectation value of the slot loss and compare it to an initial guess. The guess is then optimized for the minimum distance between estimated and actual expectation values.
+
+The limitation of this method is that we have a number of possibilities that are all valid.
+
+TODO: Add constraints (total number of bombers/fighters, constrained sum slot size to max planes)
 
 ## Slot Ordering
 
